@@ -6,7 +6,8 @@ tag: [numpy,python,deep-learning]
 toc: true
 author_profile: false
 sidebar:
-    nav: "docs"
+nav: "docs"
+use_math : true
 ---
 
 # 신경망 학습
