@@ -6,7 +6,8 @@ tag: [numpy,python,deep-learning]
 toc: true
 author_profile: false
 sidebar:
-    nav: "docs"
+nav: "docs"
+use_math : true
 ---
 
 # 신경망 학습
@@ -266,7 +267,9 @@ label(y)의 경우 원-핫 인코딩 벡터일때는 정답에 해당하는 labe
 
 **"미분"** 이란 ***'특정 순간'*** 의 변화량을 뜻합니다. 즉 정말 어느 한 순간 아주 짧은 순간의 변화량을 의미합니다.
 우리는 이것을 수식으로 다음과 같이 나타낼 수 있습니다.  
-$${df(x) \over dx} =\displaystyle\lim_{h \rarr 0} \space {f(x+h) - f(x) \over h}$$  
+$
+{df(x) \over dx} =\displaystyle\lim_{h \rightarrow 0} \space {f(x+h) - f(x) \over h}
+$
 
 그렇다면 이것을 코드로 한번 구현해보도록 하겠습니다.
 
@@ -292,8 +295,8 @@ def numerical_diff(f,x):
     h = 1e-4 # 반올림오차 방지
     return (f(x+h) - f(x-h)) / (2*h)
 ```
-
-$${df(x) \over dx} = \displaystyle\lim_{h\rarr0}{f(x+h) - f(x-h)\over 2h}$$
+  
+${df(x) \over dx} = \displaystyle\lim_{h \rightarrow 0}{f(x+h) - f(x-h)\over 2h}$
 
 위 식 처럼 중앙차분을 하게된다면 전방차분을 사용했을 때에 수치미분값과 진정한 미분값 사이의 차이를 줄일 수 있습니다.
 
@@ -302,9 +305,11 @@ $${df(x) \over dx} = \displaystyle\lim_{h\rarr0}{f(x+h) - f(x-h)\over 2h}$$
 편미분은 변수가 여럿인 함수에 대한 미분입니다. 편미분 기호로는 $d$ 대신 $\partial$ 을 사용합니다. 어렵게 생각하실 필요 없습니다.  
 변수가 여럿인 함수에 대해서 목표 변수 하나에 초점을 맞추고 다른 변수는 값을 고정한 상태로 미분을 진행하면 됩니다.
 
-$$f(x) = x^{2}_1 + x^{2}_2 + 3$$  
-$${\partial f(x)\over \partial x_1} = 2x_1$$
-$${\partial f(x)\over \partial x_2} = 2x_2$$
+$f(x) = x^{2}_1 + x^{2}_2 + 3$  
+  
+${\partial f(x)\over \partial x_1} = 2x_1$  
+  
+${\partial f(x)\over \partial x_2} = 2x_2$
 
 ### 4.4 기울기(Gradient)
 > **Review**  
@@ -339,10 +344,12 @@ def numerical_diff(f,x): # 설명
 
 - np.zeros_like(x) : x와 shape이 같고 원소가 모두 0인 numpy array를 만듭니다.
 
-$f(x)$ 를 하나 정의해서 한번 결과가 제대로 나오는지 확인 해보도록 하겠습니다.
-$$f(x) = x^{2}_1 + 3x^{2}_2$$    
-$${\partial f\over \partial x_1} = 2x_1$$
-$${\partial f\over \partial x_1} = 6x_2$$
+$f(x)$ 를 하나 정의해서 한번 결과가 제대로 나오는지 확인 해보도록 하겠습니다.  
+$f(x) = x^{2}_1 + 3x^{2}_2$        
+  
+$ {\partial f\over \partial x_1} = 2x_1$  
+    
+$ {\partial f\over \partial x_1} = 6x_2$    
 
 
 
@@ -376,8 +383,9 @@ $x_1=3,x_2=4$ 일때 그레디언트가 올바르게 나오는것을 확인 할 
 - 경사법은 현 위치에서 그레디언트 방향으로 일정 거리만큼 이동합니다.
 - \+ 대부분 신경망 학습에는 경사법(경사하강법)을 많이 사용합니다.
 
-- 경사법(경사하강법) 수식
-$$ x_n = x_n - \eta {\partial f \over \partial x_n}$$
+- 경사법(경사하강법) 수식  
+  
+    $ x_n = x_n - \eta {\partial f \over \partial x_n}$
 
 - 학습률(Learning Rate,$\eta$) : 매개변수의 값을 얼마나 갱신할건지를 정하는 하이퍼파라미터
 
